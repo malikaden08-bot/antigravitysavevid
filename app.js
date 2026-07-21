@@ -1,6 +1,8 @@
 /* ===== SaveVid — app.js (Real API Edition) ===== */
 
-const API_BASE = 'http://localhost:3000';
+const API_BASE = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+  ? 'http://localhost:3000'
+  : '';
 
 // ── Navbar scroll ─────────────────────────────────────────────────────────────
 const navbar = document.getElementById('navbar');
@@ -144,7 +146,7 @@ async function fetchVideoInfo(url, attempt = 1) {
     }
     hideProgress();
     if (err.message && err.message.includes('fetch')) {
-      showToast('❌ Cannot reach server. Make sure server.py is running on port 3000.');
+      showToast('❌ Cannot reach server.');
     } else {
       showToast(`❌ Error: ${err.message}`);
     }
@@ -388,6 +390,6 @@ window.addEventListener('load', async () => {
       showToast(`✅ Server connected · yt-dlp v${data.yt_dlp}${ffmpegWarn}`);
     }
   } catch {
-    showToast('⚠️ Server not reachable. Is server.py running?');
+    showToast('⚠️ Server not reachable.');
   }
 });
