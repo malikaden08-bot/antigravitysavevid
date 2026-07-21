@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SaveVid – Download Videos in 4K Without Watermark</title>
+  <meta name="description" content="Download videos from YouTube, Instagram, TikTok, Pinterest, and Facebook in 4K quality without watermarks. Fast, free, and easy."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <canvas id="particleCanvas"></canvas>
+
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <div class="nav-logo">
+        <div class="logo-icon">
+          <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="20" cy="20" r="18" fill="url(#logoGrad)"/>
+            <path d="M14 13L28 20L14 27V13Z" fill="white"/>
+            <path d="M20 28V32" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M16 32H24" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+            <defs>
+              <linearGradient id="logoGrad" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#7C3AED"/>
+                <stop offset="1" stop-color="#EC4899"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <span class="logo-text">Save<span class="logo-pro">Vid</span></span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#platforms">Platforms</a></li>
+        <li><a href="#how-it-works">How It Works</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+      <button class="nav-cta" id="navCta">Get Started Free</button>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <ul>
+      <li><a href="#features" onclick="closeMobile()">Features</a></li>
+      <li><a href="#platforms" onclick="closeMobile()">Platforms</a></li>
+      <li><a href="#how-it-works" onclick="closeMobile()">How It Works</a></li>
+      <li><a href="#faq" onclick="closeMobile()">FAQ</a></li>
+    </ul>
+  </div>
+
+  <section class="hero" id="hero">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="orb orb-4"></div>
+    <div class="grid-overlay"></div>
+
+    <div class="floating-cards">
+      <div class="float-card fc-yt" style="--d:0s">
+        <svg viewBox="0 0 24 24" fill="#FF0000"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        <span>YouTube</span>
+      </div>
+      <div class="float-card fc-ig" style="--d:0.4s">
+        <svg viewBox="0 0 24 24"><defs><radialGradient id="ig1" cx="30%" cy="107%" r="150%"><stop offset="0%" stop-color="#fdf497"/><stop offset="5%" stop-color="#fdf497"/><stop offset="45%" stop-color="#fd5949"/><stop offset="60%" stop-color="#d6249f"/><stop offset="90%" stop-color="#285AEB"/></radialGradient></defs><path fill="url(#ig1)" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        <span>Instagram</span>
+      </div>
+      <div class="float-card fc-tk" style="--d:0.8s">
+        <svg viewBox="0 0 24 24"><path fill="#000" d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+        <span>TikTok</span>
+      </div>
+      <div class="float-card fc-fb" style="--d:1.2s">
+        <svg viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        <span>Facebook</span>
+      </div>
+      <div class="float-card fc-pt" style="--d:1.6s">
+        <svg viewBox="0 0 24 24" fill="#E60023"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+        <span>Pinterest</span>
+      </div>
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        <span>100% Free · No Watermark · 4K Quality</span>
+      </div>
+      <h1 class="hero-title">
+        Download Any Video<br/>
+        <span class="gradient-text">Without Limits</span>
+      </h1>
+      <p class="hero-subtitle">
+        Instantly save videos from YouTube, Instagram, TikTok, Facebook and Pinterest
+        in stunning <strong>4K quality</strong> — completely free, no watermarks, no signups.
+      </p>
+
+      <div class="download-box" id="downloadBox">
+        <div class="platform-icons-row">
+          <div class="pi-icon" title="YouTube"><svg viewBox="0 0 24 24" fill="#FF0000"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></div>
+          <div class="pi-icon" title="Instagram"><svg viewBox="0 0 24 24"><defs><radialGradient id="ig2" cx="30%" cy="107%" r="150%"><stop offset="0%" stop-color="#fdf497"/><stop offset="45%" stop-color="#fd5949"/><stop offset="60%" stop-color="#d6249f"/><stop offset="90%" stop-color="#285AEB"/></radialGradient></defs><path fill="url(#ig2)" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div>
+          <div class="pi-icon" title="TikTok"><svg viewBox="0 0 24 24"><path fill="#010101" d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></div>
+          <div class="pi-icon" title="Facebook"><svg viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></div>
+          <div class="pi-icon" title="Pinterest"><svg viewBox="0 0 24 24" fill="#E60023"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg></div>
+        </div>
+        <div class="input-row">
+          <div class="input-wrapper">
+            <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+            <input type="url" id="videoUrl" placeholder="Paste video URL (YouTube, Instagram, TikTok, Facebook, Pinterest)…" autocomplete="off" spellcheck="false"/>
+            <button class="paste-btn" id="pasteBtn" title="Paste from clipboard">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 2h6l2 3H7L9 2z"/><rect x="4" y="5" width="16" height="17" rx="2" ry="2"/></svg>
+            </button>
+          </div>
+          <button class="download-btn" id="downloadBtn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2v13m0 0l-4-4m4 4l4-4M2 17l.621 2.485A2 2 0 0 0 4.561 21h14.878a2 2 0 0 0 1.94-1.515L22 17"/></svg>
+            Download
+          </button>
+        </div>
+        <div class="quality-row">
+          <span class="quality-label">Quality:</span>
+          <div class="quality-chips">
+            <button class="chip" id="chip4k">4K</button>
+            <button class="chip active" id="chip1080">1080p</button>
+            <button class="chip" id="chip720">720p</button>
+            <button class="chip" id="chip480">480p</button>
+            <button class="chip" id="chipAudio">Audio Only</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-stats">
+        <div class="stat-item"><span class="stat-number">50M+</span><span class="stat-label">Downloads</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat-item"><span class="stat-number">5</span><span class="stat-label">Platforms</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat-item"><span class="stat-number">4K</span><span class="stat-label">Max Quality</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat-item"><span class="stat-number">0</span><span class="stat-label">Watermarks</span></div>
+      </div>
+    </div>
+    <div class="scroll-indicator"><div class="scroll-dot"></div></div>
+  </section>
+
+  <div class="result-section" id="resultSection" style="display:none;">
+    <div class="result-card">
+      <div class="result-thumb" id="resultThumb">
+        <div class="thumb-placeholder">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48"><path d="M15 10l4.553-2.269A1 1 0 0121 8.679V15.32a1 1 0 01-1.447.894L15 14M3 8a2 2 0 012-2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z"/></svg>
+        </div>
+      </div>
+      <div class="result-info">
+        <div class="result-platform" id="resultPlatform">YouTube</div>
+        <h3 class="result-title" id="resultTitle">Video Title Preview</h3>
+        <div class="result-meta" id="resultMeta"><span>Duration: 5:32</span><span>•</span><span>Resolution: 4K UHD</span></div>
+        <div class="result-downloads" id="resultDownloads">
+          <a class="dl-option" href="#" onclick="simulateDownload(event,'4K MP4')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v13m0 0l-4-4m4 4l4-4"/><path d="M2 17l.621 2.485A2 2 0 004.561 21h14.878a2 2 0 001.94-1.515L22 17"/></svg><div><span class="dl-quality">4K MP4</span><span class="dl-size">~2.4 GB</span></div></a>
+          <a class="dl-option" href="#" onclick="simulateDownload(event,'1080p MP4')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v13m0 0l-4-4m4 4l4-4"/><path d="M2 17l.621 2.485A2 2 0 004.561 21h14.878a2 2 0 001.94-1.515L22 17"/></svg><div><span class="dl-quality">1080p MP4</span><span class="dl-size">~850 MB</span></div></a>
+          <a class="dl-option" href="#" onclick="simulateDownload(event,'720p MP4')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v13m0 0l-4-4m4 4l4-4"/><path d="M2 17l.621 2.485A2 2 0 004.561 21h14.878a2 2 0 001.94-1.515L22 17"/></svg><div><span class="dl-quality">720p MP4</span><span class="dl-size">~450 MB</span></div></a>
+          <a class="dl-option" href="#" onclick="simulateDownload(event,'MP3 Audio')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg><div><span class="dl-quality">MP3 Audio</span><span class="dl-size">~12 MB</span></div></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="progress-modal" id="progressModal" style="display:none;">
+    <div class="progress-card">
+      <div class="progress-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="spin-icon"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+      </div>
+      <h3 id="progressTitle">Processing your video…</h3>
+      <p id="progressSub">Fetching video details and preparing download links</p>
+      <div class="progress-bar-wrap"><div class="progress-bar-fill" id="progressFill"></div></div>
+      <div class="progress-percent" id="progressPercent">0%</div>
+    </div>
+  </div>
+
+  <section class="features-section" id="features">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-badge">Why Choose SaveVid</span>
+        <h2 class="section-title">Everything You Need, Nothing You Don't</h2>
+        <p class="section-sub">We've engineered the fastest, cleanest video downloader on the planet — built for creators, by creators.</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card" style="--delay:0s"><div class="feature-icon fi-purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div><h3>4K Ultra HD Quality</h3><p>Download videos at their maximum native resolution — up to 4K UHD — with zero compression artifacts.</p></div>
+        <div class="feature-card" style="--delay:0.1s"><div class="feature-icon fi-pink"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div><h3>Zero Watermarks</h3><p>Download clean, original videos without any imposed watermarks — perfect for content creators and editors.</p></div>
+        <div class="feature-card" style="--delay:0.2s"><div class="feature-icon fi-blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div><h3>Lightning Fast</h3><p>Our global CDN network ensures your downloads start in under 3 seconds, no matter where you are.</p></div>
+        <div class="feature-card" style="--delay:0.3s"><div class="feature-icon fi-green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><h3>100% Private &amp; Safe</h3><p>We never store your URLs or video data. Every download is processed in an isolated, encrypted session.</p></div>
+        <div class="feature-card" style="--delay:0.4s"><div class="feature-icon fi-orange"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div><h3>All Platforms</h3><p>One tool for YouTube, Instagram, TikTok, Facebook, Pinterest and more — no platform left behind.</p></div>
+        <div class="feature-card" style="--delay:0.5s"><div class="feature-icon fi-teal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div><h3>Audio Extraction</h3><p>Extract high-quality MP3 audio from any video. Perfect for podcasts, music, and offline listening.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="platforms-section" id="platforms">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-badge">Supported Platforms</span>
+        <h2 class="section-title">Works With Your Favorite Platforms</h2>
+        <p class="section-sub">Paste any link from these platforms and we'll handle the rest instantly.</p>
+      </div>
+      <div class="platforms-grid">
+        <div class="platform-card pc-yt">
+          <div class="pc-icon"><svg viewBox="0 0 48 48" fill="#FF0000"><path d="M46.996 12.372a5.99 5.99 0 0 0-4.224-4.248C39.006 7.25 24 7.25 24 7.25s-15.006 0-18.772 1.01a5.99 5.99 0 0 0-4.224 4.248C0 16.145 0 24 0 24s0 7.855 1.004 11.628a5.99 5.99 0 0 0 4.224 4.248C9 41.75 24 41.75 24 41.75s15.006 0 18.772-1.01a5.99 5.99 0 0 0 4.224-4.248C48 31.855 48 24 48 24s0-7.855-1.004-11.628zM19.09 31.136V16.864L31.636 24 19.09 31.136z"/></svg></div>
+          <h3>YouTube</h3><p>All videos, shorts, playlists — up to 4K60fps</p>
+          <div class="pc-formats"><span>MP4</span><span>MP3</span><span>WEBM</span><span>4K</span></div>
+        </div>
+        <div class="platform-card pc-ig">
+          <div class="pc-icon"><svg viewBox="0 0 48 48" fill="none"><defs><radialGradient id="ig3" cx="30%" cy="107%" r="150%"><stop offset="0%" stop-color="#fdf497"/><stop offset="45%" stop-color="#fd5949"/><stop offset="60%" stop-color="#d6249f"/><stop offset="90%" stop-color="#285AEB"/></radialGradient></defs><rect width="48" height="48" rx="12" fill="url(#ig3)"/><rect x="13" y="13" width="22" height="22" rx="6" stroke="white" stroke-width="2.5" fill="none"/><circle cx="24" cy="24" r="6" stroke="white" stroke-width="2.5" fill="none"/><circle cx="33" cy="15" r="2" fill="white"/></svg></div>
+          <h3>Instagram</h3><p>Reels, stories, posts and IGTV — watermark free</p>
+          <div class="pc-formats"><span>MP4</span><span>MP3</span><span>1080p</span></div>
+        </div>
+        <div class="platform-card pc-tk">
+          <div class="pc-icon"><svg viewBox="0 0 48 48" fill="none"><rect width="48" height="48" rx="12" fill="#010101"/><path d="M32 16c0 3.3 2.7 6 6 6v4c-2.1 0-4-.7-5.5-1.8V34c0 5.5-4.5 10-10 10s-10-4.5-10-10 4.5-10 10-10v4c-3.3 0-6 2.7-6 6s2.7 6 6 6 6-2.7 6-6V4h4c.3 4.1 3.5 7.3 7.5 7.6V16H32z" fill="white"/></svg></div>
+          <h3>TikTok</h3><p>Download TikToks without the logo watermark</p>
+          <div class="pc-formats"><span>MP4</span><span>MP3</span><span>HD</span></div>
+        </div>
+        <div class="platform-card pc-fb">
+          <div class="pc-icon"><svg viewBox="0 0 48 48" fill="none"><rect width="48" height="48" rx="12" fill="#1877F2"/><path d="M27 48V30h6l1-7h-7v-4c0-2 1-3 4-3h3V9s-3-.5-6-.5C21 8.5 18 12 18 17v6h-6v7h6v18h9z" fill="white"/></svg></div>
+          <h3>Facebook</h3><p>Public videos, reels and live streams</p>
+          <div class="pc-formats"><span>MP4</span><span>MP3</span><span>SD</span><span>HD</span></div>
+        </div>
+        <div class="platform-card pc-pt">
+          <div class="pc-icon"><svg viewBox="0 0 48 48" fill="none"><rect width="48" height="48" rx="12" fill="#E60023"/><path d="M24 4C13 4 4 13 4 24c0 8.4 5.2 15.6 12.7 18.4-.2-1.6-.3-4 .1-5.7.4-1.6 2.4-10.1 2.4-10.1s-.6-1.2-.6-3c0-2.8 1.6-4.9 3.7-4.9 1.7 0 2.6 1.3 2.6 2.9 0 1.7-1.1 4.3-1.7 6.7-.5 2 1 3.6 3 3.6 3.6 0 6.3-3.8 6.3-9.2 0-4.8-3.5-8.2-8.4-8.2-5.7 0-9.1 4.3-9.1 8.7 0 1.7.7 3.6 1.5 4.6.2.2.2.4.1.6l-.6 2.3c-.1.4-.3.4-.7.3-2.5-1.2-4.1-4.8-4.1-7.8 0-6.3 4.6-12.2 13.3-12.2 7 0 12.4 5 12.4 11.6 0 6.9-4.4 12.5-10.4 12.5-2 0-3.9-1.1-4.6-2.3l-1.3 4.8c-.5 1.7-1.7 3.9-2.5 5.3 1.9.6 3.9.9 6 .9 11 0 20-9 20-20S35 4 24 4z" fill="white"/></svg></div>
+          <h3>Pinterest</h3><p>Video pins, idea pins in original quality</p>
+          <div class="pc-formats"><span>MP4</span><span>MP3</span><span>HD</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="how-section" id="how-it-works">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-badge">Simple Process</span>
+        <h2 class="section-title">Download in 3 Easy Steps</h2>
+        <p class="section-sub">No sign-up, no software, no hassle. Just paste, pick quality, and download.</p>
+      </div>
+      <div class="steps-row">
+        <div class="step-card"><div class="step-num">01</div><div class="step-icon"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="6" y="6" width="36" height="36" rx="8"/><path d="M15 24h18M24 15v18"/></svg></div><h3>Paste URL</h3><p>Copy the video link from any supported platform and paste it into the input field above.</p></div>
+        <div class="step-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+        <div class="step-card"><div class="step-num">02</div><div class="step-icon"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="24" cy="24" r="18"/><path d="M24 12v12l8 4"/></svg></div><h3>Choose Quality</h3><p>Select from 4K, 1080p, 720p, 480p or audio-only. We'll show you the file size for each option.</p></div>
+        <div class="step-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+        <div class="step-card"><div class="step-num">03</div><div class="step-icon"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M24 6v24M24 30l-10-10M24 30l10-10"/><path d="M8 38h32"/></svg></div><h3>Download!</h3><p>Click the download button and your video saves directly to your device — no watermarks, no limits.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq-section" id="faq">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-badge">FAQ</span>
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <p class="section-sub">Everything you need to know about SaveVid.</p>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span>Is SaveVid completely free?</span><svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a">Yes! SaveVid is 100% free with no hidden fees, no premium plans, and no sign-up required. Download as many videos as you want.</div></div>
+        <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span>Do downloaded TikTok videos have watermarks?</span><svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a">No! We process TikTok videos through the original source to deliver completely watermark-free downloads in HD quality.</div></div>
+        <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span>What is the maximum quality I can download?</span><svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a">We support up to 4K UHD (3840x2160) resolution for platforms that provide it, such as YouTube. Other platforms are limited by their own maximum quality.</div></div>
+        <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span>Is it safe to use SaveVid?</span><svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a">Absolutely. We use HTTPS encryption, never store your URLs or video data, and process each download in an isolated session. No malware, no trackers.</div></div>
+        <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span>Can I download private or age-restricted videos?</span><svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a">No. SaveVid can only download publicly accessible videos. Private, members-only, or region-locked content cannot be processed.</div></div>
+        <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span>Which browsers and devices are supported?</span><svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a">SaveVid works on all modern browsers (Chrome, Firefox, Safari, Edge) on desktop, tablet, and mobile. No app installation needed.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="cta-inner">
+      <div class="cta-orb cta-orb1"></div>
+      <div class="cta-orb cta-orb2"></div>
+      <h2>Ready to Download?</h2>
+      <p>Join millions of users who trust SaveVid every day. Start downloading in seconds.</p>
+      <a href="#hero" class="cta-button" onclick="document.getElementById('videoUrl').focus()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2v13m0 0l-4-4m4 4l4-4M2 17l.621 2.485A2 2 0 004.561 21h14.878a2 2 0 001.94-1.515L22 17"/></svg>
+        Start Downloading Now
+      </a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="nav-logo" style="margin-bottom:12px;">
+          <div class="logo-icon">
+            <svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" fill="url(#logoGrad3)"/><path d="M14 13L28 20L14 27V13Z" fill="white"/><path d="M20 28V32" stroke="white" stroke-width="2.5" stroke-linecap="round"/><path d="M16 32H24" stroke="white" stroke-width="2.5" stroke-linecap="round"/><defs><linearGradient id="logoGrad3" x1="0" y1="0" x2="40" y2="40"><stop stop-color="#7C3AED"/><stop offset="1" stop-color="#EC4899"/></linearGradient></defs></svg>
+          </div>
+          <span class="logo-text">Save<span class="logo-pro">Vid</span></span>
+        </div>
+        <p>The fastest, cleanest video downloader — available free, always.</p>
+      </div>
+      <div class="footer-links">
+        <div class="fl-col"><h4>Product</h4><a href="#features">Features</a><a href="#platforms">Platforms</a><a href="#how-it-works">How It Works</a></div>
+        <div class="fl-col"><h4>Legal</h4><a href="#">Privacy Policy</a><a href="#">Terms of Service</a><a href="#">DMCA</a></div>
+        <div class="fl-col"><h4>Support</h4><a href="#faq">FAQ</a><a href="#">Contact</a><a href="#">Report Bug</a></div>
+      </div>
+    </div>
+    <div class="footer-bottom"><p>&copy; 2025 SaveVid. For personal use only. Respect copyright laws.</p></div>
+  </footer>
+
+  <div class="toast" id="toast"></div>
+  <script src="app.js"></script>
+</body>
+</html>
